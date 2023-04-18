@@ -59,6 +59,7 @@
     import axios from 'axios'
     import { useRegisterStore } from '../../store/RegisterStore'
     import AfterSubmit from '../AfterSubmit.vue'
+    import { onInputPhone, onInputDoc } from '../../utils/utils'
 
     export default {
         components: { AfterSubmit },
@@ -113,24 +114,11 @@
             },
 
             onInputDoc() {
-                this.registerStore.getForm.doc = this.registerStore.getForm.doc.replace(/[^0-9.]/g, '')
-                if (this.registerStore.type === 'fisica') {
-                    this.registerStore.getForm.doc = this.registerStore.getForm.doc.replace(/\./g, '').substr(0, 11)
-                    this.registerStore.getForm.doc = this.registerStore.getForm.doc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4')
-                } else {
-                    this.registerStore.getForm.doc = this.registerStore.getForm.doc.replace(/\./g, '').substr(0, 14)
-                    this.registerStore.getForm.doc = this.registerStore.getForm.doc.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')
-                }
+                this.registerStore.getForm.doc = onInputDoc(this.registerStore.getForm.doc, this.registerStore.type)
             },
 
             onInputPhone() {
-                this.form.phone = this.form.phone.replace(/[^0-9]/g, '')
-
-                if (this.form.phone.length === 10) {
-                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
-                } else if (this.form.phone.length === 11) {
-                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
-                }
+                this.registerStore.getForm.phone = onInputPhone(this.registerStore.getForm.phone)
             },
 
             isFormValid() {

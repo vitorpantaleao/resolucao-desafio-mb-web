@@ -36,6 +36,7 @@
 
 <script>
     import { useRegisterStore } from '../../store/RegisterStore'
+    import { onInputPhone, onInputDoc } from '../../utils/utils'
 
     export default {
         name: 'Step2',
@@ -66,24 +67,11 @@
 
         methods: {
             onInputDoc() {
-                this.form.doc = this.form.doc.replace(/[^0-9.]/g, '')
-                if (this.registerStore.type === 'fisica') {
-                    this.form.doc = this.form.doc.replace(/\./g, '').substr(0, 11)
-                    this.form.doc = this.form.doc.replace(/(\d{3})(\d{3})(\d{3})(\d{2})$/, '$1.$2.$3-$4')
-                } else {
-                    this.form.doc = this.form.doc.replace(/\./g, '').substr(0, 14)
-                    this.form.doc = this.form.doc.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5')
-                }
+                this.form.doc = onInputDoc(this.form.doc, this.registerStore.type)
             },
 
             onInputPhone() {
-                this.form.phone = this.form.phone.replace(/[^0-9]/g, '')
-
-                if (this.form.phone.length === 10) {
-                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
-                } else if (this.form.phone.length === 11) {
-                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
-                }
+                this.form.phone = onInputPhone(this.form.phone)
             },
 
             isFormCompleted() {
