@@ -4,8 +4,9 @@
             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
         </svg>
         <h2>Usuário cadastrado com sucesso!</h2>
-        <div class="group-button">
+        <div class="group-button end">
             <button type="button" class="next-step" value="Continuar" @click="nextStep"> Novo Cadastro </button>
+            <button type="button" class="get-users" value="Continuar" @click="getUsers"> Ver usuários cadastrados </button>
         </div>
     </div>
 </template>
@@ -68,5 +69,21 @@
         border: 1px solid #FF9900;
         color: #FF9900;
         background: #FFF;
+    }
+
+    .get-users {
+        width: 250px;
+        min-height: 50px;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+        font-weight: 500;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .end {
+        flex-direction: column;
     }
 </style>
