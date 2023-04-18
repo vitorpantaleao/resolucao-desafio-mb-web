@@ -5,24 +5,17 @@ Após clonar o projeto, execute o comando abaixo para instalar as dependências.
 ```bash
 npm install
 ```
-Para iniciar o projeto, execute o comando abaixo, ele irá iniciar o servidor na porta 3000.
-
-```bash
-npm start
-
-# http://localhost:3000
-```
-
-**Altere o arquivo .env.exemplo para .env e altere as variáveis de acordo com o seu ambiente, abaixo segue o código SQL para criar o banco de dados**
 
 <br>
 
-## Create database
+## Crie o banco de dados
 
-Aqui você pode criar o banco de dados e a tabela para o projeto, bastando executar o comando abaixo no seu terminal SQL (o mysql deve estar instalado na máquina).
+Aqui você pode criar o banco de dados e a tabela para o projeto, bastando executar os comandos abaixo no seu terminal SQL (o mysql deve estar instalado na máquina).
 
 ```sql
 create database api_users;
+
+use api_users;
 
 create table users (
 	id int primary key auto_increment,
@@ -36,7 +29,19 @@ create table users (
 );
 ```
 
+
+**Após criar o banco de dados, altere o arquivo .env.exemplo para .env e altere as variáveis de acordo com o seu ambiente**
+
 <br>
+
+## Inicie o projeto
+Após alterar os dados do arquivo .env, para iniciar o projeto, execute o comando abaixo, o servidor será iniciado na porta 3000.
+
+```bash
+npm start
+
+# http://localhost:3000
+```
 
 ## Segue abaixo os endpoints da API
 
