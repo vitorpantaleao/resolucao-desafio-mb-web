@@ -30,12 +30,12 @@ create table users (
 ```
 
 
-**Após criar o banco de dados, altere o arquivo .env.exemplo para .env e altere as variáveis de acordo com o seu ambiente**
+**Após criar o banco de dados, renomeie o arquivo .env.exemplo para .env e altere as variáveis de acordo com o seu ambiente.**
 
 <br>
 
 ## Inicie o projeto
-Após alterar os dados do arquivo .env, para iniciar o projeto, execute o comando abaixo, o servidor será iniciado na porta 3000.
+Após alterar os dados do arquivo .env, para iniciar o projeto execute o comando abaixo, o servidor será iniciado na porta 3000.
 
 ```bash
 npm start
@@ -43,11 +43,11 @@ npm start
 # http://localhost:3000
 ```
 
-## Segue abaixo os endpoints da API
+## Segue abaixo os endpoints disponíveis da API 
 
 ### ***POST*** /api/registration
 
-Cadastra um novo usuário.
+Cadastra um novo usuário no banco de dados.
 
 ##### **Exemplo de POST com Axios**
 
@@ -78,12 +78,27 @@ axios.post("http://localhost:3000/api/registration", formUser, {
 .catch(error => {
   console.log('error', error)
 })
-
 ```
 
 ### ***GET*** /api/registration
 
 Lista todos os usuários cadastrados.
+
+##### **Exemplo de GET com Axios**
+
+```javascript
+// Importe a biblioteca do Axios
+import axios from 'axios'
+
+// Faça a requisição usando o Axios
+axios.get("http://localhost:3000/api/registration")
+.then(response => {
+  console.log(response.data)
+})
+.catch(error => {
+  console.log('error', error)
+})
+```
 
 <br>
 
