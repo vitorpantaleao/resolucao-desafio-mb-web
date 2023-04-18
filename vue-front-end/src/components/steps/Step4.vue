@@ -42,7 +42,7 @@
             <div class="input-form">
                 <label for="passwordF"> Sua senha
                     <input type="text" id="passwordF" name="Name" v-model="registerStore.getForm.password" @input="isPasswordValid" />
-                    <p class="error" v-if="!passwordValid">A senha não pode conter espaços em branco</p>
+                    <p class="error" v-if="!passwordValid">A senha deve conter pelo menos 6 caracteres e não conter espaços em branco</p>
                 </label>
             </div>
 
@@ -107,9 +107,10 @@
 
             isPasswordValid() {
                 if (/\s/.test(this.registerStore.getForm.password)) {
-                    this.passwordValid = false;
+                    this.passwordValid = false
+                    this.formValid = false
                 } else {
-                    this.passwordValid = true;
+                    this.passwordValid = true
                 }
             },
 
@@ -128,7 +129,8 @@
                     this.registerStore.getForm.doc.length >= 11 && 
                     this.registerStore.getForm.date.length >= 8 && 
                     this.registerStore.getForm.phone.length >= 11 && 
-                    this.passwordValid
+                    this.passwordValid &&
+                    this.registerStore.getForm.password.length >= 6
                 ) {
                     this.disabled = false
                     this.formValid = true
