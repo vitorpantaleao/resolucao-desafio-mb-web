@@ -36,7 +36,7 @@
             </div>
             <div class="input-form">
                 <label for="phoneF"> Telefone
-                    <input type="text" id="phoneF" name="Phone" v-model="registerStore.getForm.phone" @input="onInputPhone" maxlength="11" />
+                    <input type="text" id="phoneF" name="Phone" v-model="registerStore.getForm.phone" @input="onInputPhone" maxlength="15" />
                 </label>
             </div>
             <div class="input-form">
@@ -124,8 +124,13 @@
             },
 
             onInputPhone() {
-                this.registerStore.getForm.phone = this.registerStore.getForm.phone.replace(/[^0-9.]/g, '')
-                this.registerStore.getForm.phone = this.registerStore.getForm.phone.replace(/(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3')
+                this.form.phone = this.form.phone.replace(/[^0-9]/g, '')
+
+                if (this.form.phone.length === 10) {
+                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{4})(\d{4})/, '($1) $2-$3')
+                } else if (this.form.phone.length === 11) {
+                    this.form.phone = this.form.phone.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3')
+                }
             },
 
             isFormValid() {
