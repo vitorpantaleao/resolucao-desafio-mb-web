@@ -73,7 +73,7 @@
                 passwordValid: true,
                 formValid: true,
                 registerStore: useRegisterStore(),
-                success: true,
+                success: false,
             }
         },
 

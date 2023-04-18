@@ -6,31 +6,38 @@
         <h2>Usuário cadastrado com sucesso!</h2>
         <div class="group-button end">
             <button type="button" class="next-step" value="Continuar" @click="nextStep"> Novo Cadastro </button>
-            <button type="button" class="get-users" value="Continuar" @click="getUsers"> Ver usuários cadastrados </button>
+            <button type="button" class="get-users" value="Continuar" @click="getAllUsers = true" > Ver usuários cadastrados </button>
         </div>
+        <GetAllUsers v-if="getAllUsers" :getAll="getAllUsers" class="table" />
     </div>
 </template>
 
 <script>
+import GetAllUsers from './GetAllUsers.vue';
+
     export default {
-        name: 'AfterSubmit',
-
-        props: ['success'],
-
-        methods: {
-            nextStep() {
-                this.$emit('close', false)
-                window.location.reload()
-            }
-        }
-    }
+    name: "AfterSubmit",
+    props: ["success"],
+    data() {
+        return {
+            getAllUsers: false
+        };
+    },
+    methods: {
+        nextStep() {
+            this.$emit("close", false);
+            window.location.reload();
+        },
+    },
+    components: { GetAllUsers }
+}
 </script>
 
 <style scoped>
     .success {
         position: fixed;
         width: 100%;
-        height: 100vh;
+        min-height: 100vh;
         left: 0;
         top: 0;
         background-color: rgba(255, 255, 255);
@@ -39,6 +46,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        overflow: auto;
     }
 
     h2 {
@@ -85,5 +93,33 @@
 
     .end {
         flex-direction: column;
+    }
+
+    .table {
+        margin-top: 20px;
+    }
+
+    @media(max-width: 768px) {
+        .success svg {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+        }
+
+        .next-step, 
+        .get-users {
+            width: 100%;
+            height: 40px !important;
+            font-size: 14px;
+            margin-top: 0;
+        }
+
+        .table {
+            width: 100%;
+        }
     }
 </style>
